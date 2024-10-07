@@ -13,9 +13,7 @@ const relay = '...'
 3. Start the listener
 
 ```console
-$ npx pw-test listener.js
-- Count not find a test runner. Using "none".
-ℹ Browser "chromium" setup complete.
+$ node listener.js
 const listener = '...'
 ```
 
@@ -23,9 +21,7 @@ const listener = '...'
 5. Start the sender
 
 ```console
-$ npx pw-test sender.js
-- Count not find a test runner. Using "none".
-ℹ Browser "chromium" setup complete.
+$ node sender.js
 PING 12D3Foo... 1ms
 PING 12D3Foo... 1ms
 PING 12D3Foo... 1ms
@@ -33,12 +29,4 @@ PING 12D3Foo... 1ms
 PING 12D3Foo... 2ms
 PING 12D3Foo... 1ms
 ...
-```
-
-## Variations
-
-Use Firefox
-
-```console
-$ npx pw-test --browser firefox sender.js
 ```

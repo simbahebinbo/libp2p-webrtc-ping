@@ -7,8 +7,9 @@ import { ping } from '@libp2p/ping'
 import { webRTC } from '@libp2p/webrtc'
 import { multiaddr } from '@multiformats/multiaddr'
 import { all } from '@libp2p/websockets/filters'
+import {identify} from "@libp2p/identify";
 
-const listener = '/ip4/127.0.0.1/tcp/59957/ws/p2p/12D3KooWDu73Fuu7v3QHt6k5SBkUGq6UdRuw5mWFD8r99sA7aLJi/p2p-circuit/webrtc/p2p/12D3KooWD7ETnfbDiq26JBeqb8BLxyoXj3j6RNmbDUK3UfNcoDWt'
+const listener = '/ip4/127.0.0.1/tcp/57263/ws/p2p/12D3KooWFKPdHFd2WKukgpf6HTPHqF1Yzuz6iVk9E2SpKebdjbr3/p2p-circuit/webrtc/p2p/12D3KooWD1hR7tShhHXEFA4egFmuHqRAe9ukEbT1wQWwvsbAKCCf'
 
 const sender = await createLibp2p({
   connectionEncryption: [
@@ -28,12 +29,13 @@ const sender = await createLibp2p({
     denyDialMultiaddr: () => false
   },
   services: {
-    ping: ping()
+    ping: ping(),
+    identify: identify()
   }
 })
 
-while (true) {
+setInterval(async () => {
   const ma = multiaddr(listener)
   const rtt = await sender.services.ping.ping(ma)
   console.info('PING', ma.getPeerId(), `${rtt}ms`)
-}
+}, 2000)

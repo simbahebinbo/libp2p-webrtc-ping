@@ -7,8 +7,8 @@ import { ping } from '@libp2p/ping'
 import { webRTC } from '@libp2p/webrtc'
 import { all } from '@libp2p/websockets/filters'
 import { WebRTC } from '@multiformats/multiaddr-matcher'
-
-const relay = '/ip4/127.0.0.1/tcp/59957/ws/p2p/12D3KooWDu73Fuu7v3QHt6k5SBkUGq6UdRuw5mWFD8r99sA7aLJi'
+import { identify } from '@libp2p/identify'
+const relay = '/ip4/127.0.0.1/tcp/57263/ws/p2p/12D3KooWFKPdHFd2WKukgpf6HTPHqF1Yzuz6iVk9E2SpKebdjbr3'
 
 const listener = await createLibp2p({
   addresses: {
@@ -34,7 +34,8 @@ const listener = await createLibp2p({
     denyDialMultiaddr: () => false
   },
   services: {
-    ping: ping()
+    ping: ping(),
+    identify: identify()
   }
 })
 
